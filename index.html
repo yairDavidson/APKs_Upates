@@ -2,19 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Random Redirect</title>
+  <title>Open Bitpay App</title>
   <script>
-    window.onload = function() {
-      const urls = [
-        "https://www.google.com/url?q=https://www.bitpay.co.il/app/me/37771E28-E05E-36DE-6BD6-DF2E6C0189034119",
-        "https://www.google.com/url?q=https://www.bitpay.co.il/app/me/0A81F512-C377-615C-58F3-7E8ECFB0F776A5D1"
-      ];
-      const randomIndex = Math.floor(Math.random() * urls.length);
-      window.location.href = urls[randomIndex];
-    };
+    function openApp() {
+      // Try to open the app with its custom URI
+      window.location = "bitpay://me/37771E28-E05E-36DE-6BD6-DF2E6C0189034119";
+    }
   </script>
 </head>
-<body>
-  <p>Redirecting...</p>
+<body onload="openApp()">
+  <p>Opening Bitpay app...</p>
 </body>
 </html>
