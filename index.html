@@ -3,22 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Open BitPay App</title>
+  <title>Open Bit App</title>
 </head>
 <body>
-  <button id="open">Open in BitPay app</button>
+  <button id="open">Open in Bit app</button>
 
   <script>
-    // Target app package and Play Store fallback
-    const intentURI = "intent://www.bitpay.co.il/app/me/0A81F512-C377-615C-58F3-7E8ECFB0F776A5D1#Intent;scheme=https;package=com.bnhp.payments.paymentsapp;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.bnhp.payments.paymentsapp;end";
-    const playStore = "https://play.google.com/store/apps/details?id=com.bnhp.payments.paymentsapp";
-
     document.getElementById("open").addEventListener("click", () => {
-      // Attempt to open the app via Android intent
-      window.location = intentURI;
-      // If the app is not installed some browsers ignore intent.
-      // Fallback to Play Store after short delay.
-      setTimeout(() => window.location = playStore, 700);
+      window.location = "intent://www.bitpay.co.il/app/me/0A81F512-C377-615C-58F3-7E8ECFB0F776A5D1#Intent;scheme=https;package=com.bnhp.payments.paymentsapp;end";
     });
   </script>
 </body>
