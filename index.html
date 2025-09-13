@@ -1,16 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Open Bitpay App</title>
+  <meta charset="utf-8" />
+  <title>Open BitPay App</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <script>
-    function openApp() {
-      // Try to open the app with its custom URI
-      window.location = "bitpay://me/37771E28-E05E-36DE-6BD6-DF2E6C0189034119";
+    // Replace the ID below with your resource id if different
+    const resourceId = "37771E28-E05E-36DE-6BD6-DF2E6C0189034119";
+
+    // Intent URI. Change package and scheme if BitPay uses different values.
+    const intentURI = "intent://app/me/" + resourceId +
+      "#Intent;scheme=bitpay;package=com.bitpay.wallet;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.bitpay.wallet;end";
+
+    // Play Store fallback (unescaped, used for manual fallback)
+    const playStoreURL = "https://play.google.com/store/apps/details?id=com.bitpay.wallet";
+
+    function tryOpenApp() {
+      // First try the intent link (Chrome on Android supports this)
+      window.location.href = intentURI;
+
+      // Fallback: if after 1.2s the page is still visible, open Play Store.
+      // This is a pragmatic heuristic. Some browsers handle intent URI themselves.
+      const start = Date.now();
+      setTimeout(function() {
+        // If user didn't leave the page, send them to Play Store
+        if (Date.now() - start < 1500) {
+          window.location.href = playStoreURL;
+        }
+      }, 1200);
     }
+
+    // Auto-run on load
+    window.addEventListener("load", tryOpenApp, { once: true });
   </script>
 </head>
-<body onload="openApp()">
-  <p>Opening Bitpay app...</p>
+<body>
+  <p>Attempting to open the BitPay app. If nothing happens, <a id="manual" href="#" onclick="tryOpenApp();return false">tap here</a> or <a href="https://play.google.com/store/apps/details?id=com.bitpay.wallet" target="_blank" rel="noopener">open Play Store</a>.</p>
 </body>
 </html>
