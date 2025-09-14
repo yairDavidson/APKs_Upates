@@ -1,17 +1,17 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Open Bit App</title>
+    <meta charset="UTF-8">
+    <title>Open BitPay</title>
 </head>
 <body>
-  <button id="open">Open in Bit app</button>
+    <a href="https://www.bitpay.co.il/app/me/37771E28-E05E-36DE-6BD6-DF2E6C0189034119" target="_blank">
+        Open BitPay
+    </a>
 
-  <script>
-    document.getElementById("open").addEventListener("click", () => {
-      window.location = "intent://www.bitpay.co.il/app/me/0A81F512-C377-615C-58F3-7E8ECFB0F776A5D1#Intent;scheme=https;package=com.bnhp.payments.paymentsapp;end";
-    });
-  </script>
+    <!-- Or automatically redirect -->
+    <script>
+        window.location.href = "https://www.bitpay.co.il/app/me/37771E28-E05E-36DE-6BD6-DF2E6C0189034119";
+    </script>
 </body>
 </html>
